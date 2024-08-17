@@ -35,6 +35,12 @@ fn main() {
         }
     };
 
+    // Check if the number of hours exceeds the limit
+    if hours > 12.0 {
+        eprintln!("Error: Number of hours cannot exceed 12.");
+        return;
+    }
+
     // Convert hours to minutes
     let minutes = hours * 60.0;
 
@@ -44,7 +50,14 @@ fn main() {
     } else {
         let additional_minutes = minutes - 30.0;
         let intervals = (additional_minutes / 15.0).ceil(); // Number of 15-minute intervals
-        130.0 + 100.0 * intervals
+        let calculated_cost = 130.0 + 100.0 * intervals;
+        
+        // Limit the cost to 1800
+        if calculated_cost > 1800.0 {
+            1800.0
+        } else {
+            calculated_cost
+        }
     };
 
     // Print the result
